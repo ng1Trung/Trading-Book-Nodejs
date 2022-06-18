@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      BookReview.belongsTo(models.Book, { foreignKey: "bookId" })
     }
   }
   BookReview.init(
@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
+      freezeTableName: true,
       modelName: "BookReview",
     }
   )

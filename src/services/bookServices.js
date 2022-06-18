@@ -45,4 +45,90 @@ const getBooksByStatus = (bookStatus) => {
   })
 }
 
-export { getBooksById, getBooksByStatus }
+const createBook = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await db.Book.create({
+        status: "mine",
+        userId: data.userId,
+        title: data.title,
+        author: data.author,
+        category: data.category,
+        language: data.language,
+        publisher: data.publisher,
+        publishing: data.publishing,
+        thumbnail: data.thumbnail,
+        description: data.description,
+        rating: data.rating,
+      })
+      resolve({
+        errorCode: 0,
+        message: "Completed create book!",
+        data,
+      })
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
+const deleteBook = (bookId) => {
+  return new Promise(async (resolve, reject) => {
+    const book = await db.Book.findOne({ where: { id: bookId } })
+    if (!book) {
+      resolve({
+        errorCode: 2,
+        errorMessage: "Can not find that book to delete!",
+      })
+    }
+
+    await db.Book.destroy({ where: { id: bookId } })
+
+    resolve({
+      errorCode: 0,
+      message: "Completed delete book",
+    })
+  })
+}
+
+const updateBook = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!data.id) {
+        resolve({
+          errorCode: 1,
+          errorMessage: "Missing required parameter!",
+        })
+      }
+
+      const book = await db.Book.findOne({ where: { id: data.id }, raw: false })
+      if (book) {
+        book.userId = data.userId
+        book.title = data.title
+        book.author = data.author
+        book.category = data.category
+        book.language = data.language
+        book.publisher = data.publisher
+        book.publishing = data.publishing
+        book.thumbnail = data.thumbnail
+        book.description = data.description
+        book.rating = data.rating
+
+        await book.save()
+
+        resolve({
+          errorCode: 0,
+          message: "Update book completed!",
+        })
+      } else {
+        resolve({
+          errorCode: 2,
+          message: "Can not find that book to update!",
+        })
+      }
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+export { getBooksById, getBooksByStatus, createBook, deleteBook, updateBook }

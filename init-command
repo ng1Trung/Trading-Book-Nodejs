@@ -1,0 +1,2 @@
+seeders: npx sequelize-cli db:seed:all / npx sequelize-cli db:seed --seed seeder-books.js
+migrations: npx sequelize-cli db:migrate

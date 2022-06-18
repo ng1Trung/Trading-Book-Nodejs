@@ -9,9 +9,16 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        tradeId: 4,
-        firstUserBookId: 1,
+        tradeId: 2,
+        firstUserBookId: 4,
         secondUserBookId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        tradeId: 3,
+        firstUserBookId: 3,
+        secondUserBookId: 4,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

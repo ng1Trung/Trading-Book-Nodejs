@@ -10,16 +10,13 @@ const db = {}
 
 let sequelize
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config, {
-    define: { freezeTableName: true },
-  })
+  sequelize = new Sequelize(process.env[config.use_env_variable], config)
 } else {
   sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
-    config,
-    { define: { freezeTableName: true } }
+    config
   )
 }
 
@@ -34,6 +31,7 @@ fs.readdirSync(__dirname)
       sequelize,
       Sequelize.DataTypes
     )
+    // console.log(model)
     db[model.name] = model
   })
 

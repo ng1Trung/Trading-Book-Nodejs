@@ -1,26 +1,26 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("trades", [
+    return queryInterface.bulkInsert("trade", [
       {
         status: "success",
-        firstUserId: 1,
-        secondUserId: 2,
-        messageRequest: "Trading request",
+        firstUserId: 2,
+        secondUserId: 3,
+        messageRequest: "Trading request 1",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         status: "reject",
-        firstUserId: 3,
-        secondUserId: 4,
+        firstUserId: 4,
+        secondUserId: 2,
         messageRequest: "Trading request 2",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         status: "requesting",
-        firstUserId: 5,
-        secondUserId: 6,
+        firstUserId: 3,
+        secondUserId: 4,
         messageRequest: "Trading request 3",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -28,6 +28,6 @@ module.exports = {
     ])
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("trades", null, {})
+    return queryInterface.bulkDelete("trade", null, {})
   },
 }

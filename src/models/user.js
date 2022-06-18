@@ -20,12 +20,13 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       gender: DataTypes.BOOLEAN,
-      dateOfBirth: DataTypes.DATE,
-      favoriteTypesOfBook: DataTypes.STRING,
+      birthDay: DataTypes.DATE,
+      favoriteTypes: DataTypes.STRING,
       avatar: DataTypes.STRING,
     },
     {
       sequelize,
+      freezeTableName: true,
       modelName: "User",
     }
   )

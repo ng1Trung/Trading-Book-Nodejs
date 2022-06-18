@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      CloneFrom.belongsTo(models.Book, { foreignKey: "bookId" })
     }
   }
   CloneFrom.init(
@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
+      freezeTableName: true,
       modelName: "CloneFrom",
     }
   )

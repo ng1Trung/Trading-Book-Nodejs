@@ -8,25 +8,27 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Book.hasMany(models.BookReview)
+      models.BookReview.belongsTo(Book)
     }
   }
   Book.init(
     {
       status: DataTypes.STRING,
-      ownerId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
       title: DataTypes.STRING,
       author: DataTypes.STRING,
       category: DataTypes.STRING,
       language: DataTypes.STRING,
       publisher: DataTypes.STRING,
-      publishing: DataTypes.DATE,
+      publishing: DataTypes.STRING,
       thumbnail: DataTypes.STRING,
       description: DataTypes.TEXT,
       rating: DataTypes.STRING,
     },
     {
       sequelize,
+      freezeTableName: true,
       modelName: "Book",
     }
   )
